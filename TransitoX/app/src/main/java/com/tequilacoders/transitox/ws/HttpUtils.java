@@ -12,7 +12,7 @@ import java.util.Date;
 
 public class HttpUtils {
 
-    private static final String BASE_URL = "http://192.168.1.100:8080/TransitoWS/ws/generic/";
+    private static final String BASE_URL = "http://192.168.0.100:8080/TransitoWS/ws/generic/";
     private static final Integer CONNECT_TIMEOUT = 4000; //MILISEGUNDOS
     private static final Integer READ_TIMEOUT = 10000; //MILISEGUNDOS
 

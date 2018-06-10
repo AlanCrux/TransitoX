@@ -1,14 +1,11 @@
 package com.tequilacoders.transitox;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -85,8 +82,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
     private void resultadoEntrar(){
         if(resws != null && !resws.isError() && resws.getResult() != null){
-            if(resws.getResult().contains("idUsuario")){
-                Intent intent = new Intent(this, InicioActivity.class);
+            if(resws.getResult().contains("numLicencia")){
+                Intent intent = new Intent(this, PrincipalActivity.class);
                 intent.putExtra("json_usuario", resws.getResult());
                 startActivity(intent);
                 System.out.println(resws.getResult());
@@ -100,7 +97,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 Drawable icono = res.getDrawable(R.drawable.ic_ghost);
                 Mensajes.mostrarAlertDialog("Booh!", "El servidor está muerto",IniciarSesionActivity.this,icono);
             } else {
-                Drawable icono = res.getDrawable(R.drawable.duck);
+                Drawable icono = res.getDrawable(R.drawable.ic_duck);
                 Mensajes.mostrarAlertDialog("¿Ehh?", "Tus credenciales no son válidas",IniciarSesionActivity.this,icono);
             }
 
