@@ -50,6 +50,9 @@ public class Vehiculo {
     public void setNumPoliza(String numPoliza) {
         this.numPoliza = numPoliza;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return placas;
+    }
 }

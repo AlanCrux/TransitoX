@@ -6,24 +6,30 @@ import java.util.Date;
 public class Conductor {
     private String numLicencia;
     private String nombre;
-    private String apPaterno;
-    private String apMaterno;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private String celular;
     private String clave;
+    private String verificado;
 
     public Conductor() {
     }
 
-    public Conductor(String numLicencia, String nombre, String apPaterno, String apMaterno, Date fechaNacimiento, String celular, String clave) {
+    public Conductor(String numLicencia, String nombre, String apPaterno, String apMaterno, String fechaNacimiento, String celular, String clave) {
         this.numLicencia = numLicencia;
         this.nombre = nombre;
-        this.apPaterno = apPaterno;
-        this.apMaterno = apMaterno;
         this.fechaNacimiento = fechaNacimiento;
         this.celular = celular;
         this.clave = clave;
     }
+
+    public String getVerificado() {
+        return verificado;
+    }
+
+    public void setVerificado(String verificado) {
+        this.verificado = verificado;
+    }
+
 
     public String getNumLicencia() {
         return numLicencia;
@@ -41,27 +47,12 @@ public class Conductor {
         this.nombre = nombre;
     }
 
-    public String getApPaterno() {
-        return apPaterno;
-    }
 
-    public void setApPaterno(String apPaterno) {
-        this.apPaterno = apPaterno;
-    }
-
-    public String getApMaterno() {
-        return apMaterno;
-    }
-
-    public void setApMaterno(String apMaterno) {
-        this.apMaterno = apMaterno;
-    }
-
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -80,7 +71,4 @@ public class Conductor {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    
-    
-    
 }

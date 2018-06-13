@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.tequilacoders.transitox.utilerias.Mensajes;
 import com.tequilacoders.transitox.ws.HttpUtils;
 import com.tequilacoders.transitox.ws.Response;
+import com.tequilacoders.transitox.ws.pojos.Conductor;
 import com.tequilacoders.transitox.ws.pojos.Mensaje;
 
 
@@ -83,10 +85,23 @@ public class IniciarSesionActivity extends AppCompatActivity {
     private void resultadoEntrar(){
         if(resws != null && !resws.isError() && resws.getResult() != null){
             if(resws.getResult().contains("numLicencia")){
-                Intent intent = new Intent(this, PrincipalActivity.class);
-                intent.putExtra("json_usuario", resws.getResult());
-                startActivity(intent);
-                System.out.println(resws.getResult());
+                Gson gson =  new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+                Conductor conductor = gson.fromJson(resws.getResult(), Conductor.class);
+                if (conductor.getVerificado() != null){
+                    if (conductor.getVerificado().equals("True")){
+                        Intent intent = new Intent(this, PrincipalActivity.class);
+                        intent.putExtra("json_usuario", resws.getResult());
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(this, ConfirmacionActivity.class);
+                        intent.putExtra("json_usuario", resws.getResult());
+                        startActivity(intent);
+                    }
+                } else{
+                    Intent intent = new Intent(this, ConfirmacionActivity.class);
+                    intent.putExtra("json_usuario", resws.getResult());
+                    startActivity(intent);
+                }
             }else{
                 Mensaje mensaje = new Gson().fromJson(resws.getResult(), Mensaje.class);
                 Mensajes.mostrarAlertDialog((mensaje.isError()) ? "Error" : "Aviso", mensaje.getMensaje(),IniciarSesionActivity.this);
